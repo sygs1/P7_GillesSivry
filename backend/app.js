@@ -4,9 +4,10 @@ const app = express();
 
 const userRoutes = require('./routes/user');
 const messagesRoutes = require('./routes/messages');
-const commentairesRoutes = require('./routes/commentaires');
+const commentairesRoutes = require('./routes/commentaires.js');
 
 const connectBdd = require('./bdd/comseqbdd');
+const mysql = require('mysql');
 
 const bodyParser = require('body-parser');
 const path = require('path'); //gestion dossier
@@ -23,6 +24,19 @@ const apiLimiter = rateLimit({
 require('dotenv').config(); // import environnement
 
 
+//-----------------------------------------------------init com
+const db = mysql.createConnection({
+   host: "localhost",
+   user: "root",
+   password: "gs2021"
+ }); 
+//----------------------------------------------------- comm
+db.connect(function(err) {
+   if (err) throw err;
+   console.log("Connecté à la base de données MySQL!");
+ }); 
+ //-----------------------------------------------------
+
 //mongoose.connect(process.env.Admin3,
 //  { useNewUrlParser: true,
 //    useCreateIndex: true,
@@ -33,7 +47,7 @@ require('dotenv').config(); // import environnement
 //mongoose.set('useCreateIndex', true);
 //
 
-
+//-----------------------------------------------------
 
 app.use("/api/", apiLimiter); // prevention bruteForce le plus tôt possible
 //
