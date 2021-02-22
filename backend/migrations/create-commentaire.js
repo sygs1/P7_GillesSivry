@@ -1,34 +1,32 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('messages', {
+    await queryInterface.createTable('ommentaires', {
       idmessages: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      users_idusers: {
+      idcommentaires: {
         allowNull: false,
         type: Sequelize.INTEGER
       },
-      likes_idlikes: {
+      commentaire: {
+        allowNull: true,
+        type: Sequelize.STRING
+      },
+
+      likescommentaire_idlikescommetaire: {
         allowNull: true,
         type: Sequelize.INTEGER
       },
       
-      titremessage: {
+      messages_idmessages: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
-      message: {
-        allowNull: true,
-        type: Sequelize.STRING
-      },
-      urlimage: {
-        type: Sequelize.STRING
-      },
-    
+     
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
