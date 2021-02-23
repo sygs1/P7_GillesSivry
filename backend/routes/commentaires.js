@@ -6,7 +6,7 @@ const router = express.Router(); //logique router Express
 // controle avec hash
 const auth = require('../middleware/auth'); // authentification
 //
-//const multer = require('../middleware/multer-config'); // gestion dossier
+const multer = require('../middleware/multer-config'); // gestion dossier
 //
 const messagesCtrl = require('../controllers/messages'); // ref controller messages
 
