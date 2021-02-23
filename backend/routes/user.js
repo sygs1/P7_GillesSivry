@@ -5,14 +5,14 @@ const userCtrl = require('../controllers/user');
 const protectLog = require('../middleware/protectLog'); // passe par middleware protectLog
 
 //---------------------
-// crea user dans mongo
+// crea user dans bdd
 router.post('/api/auth/signup', (req, res, next) => { // passe par auth
     delete req.body._id;
     const users = new Users({   // nouveau user
         ...req.body
     });
     thing.save()
-        .then(() => res.status(201).json({ message: 'Objet enregistré !'}))
+        .then(() => res.status(201).json({ message: 'user enregistré !'}))
         .catch(error => res.status(400).json({ error }));
     });
     

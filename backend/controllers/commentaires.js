@@ -2,7 +2,7 @@ const Commentaire = require("../models/commentaires");
 const fs = require('fs'); // file system de node
 
 // crea commentaires
-exports.createCommentaires = (req, res, next) => {
+exports.createCommentaire = (req, res, next) => {
     const commentaireeObject = JSON.parse(req.body.commentaire);
     delete commentaireObject._id; 
     const commentaire= new Mesage({ // new dans mongoose crée un champ _id
@@ -59,7 +59,7 @@ exports.getOneCommentaire = (req, res, next) => {
 };
 
 // recup ts les commentaires
-exports.getCommentaire = (req, res, next) => {
+exports.getCommentaires = (req, res, next) => {
     Commentaire.find()
         .then(message => res.status(200).json(message))
         .catch(error => res.status(400).json({ error }));

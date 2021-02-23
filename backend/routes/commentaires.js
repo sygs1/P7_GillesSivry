@@ -10,7 +10,7 @@ const auth = require('../middleware/auth'); // authentification
 //
 const messagesCtrl = require('../controllers/messages'); // ref controller messages
 
-const commentaireCtrl = require('../controllers/commentaires'); // ref ctrl commentaires
+const commentairesCtrl = require('../controllers/commentaires'); // ref ctrl commentaires
 
 
 // recup liste commentaires dans bdd

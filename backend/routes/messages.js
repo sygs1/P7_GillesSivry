@@ -18,7 +18,7 @@ router.get('/', auth, messagesCtrl.getMessages);
 // recup un message 
 router.get('/:id', auth, messagesCtrl.getOneMessage);
 // crea message
-router.post('/', auth, multer, messagesCtrl.createMessages);
+router.post('/', auth, multer, messagesCtrl.createMessage);
 // modif message
 router.put('/:id', auth, multer, messagesCtrl.modifyMessage);  
 // supp message
