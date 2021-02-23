@@ -23,10 +23,11 @@ module.exports = (sequelize, DataTypes) => {
   };
   message.init({
     users_idusers: DataTypes.INTEGER,
-    likes_idlikes: DataTypes.INTEGER,
+    
     titremessages: DataTypes.STRING,
     message: DataTypes.STRING,
-    urlimage: DataTypes.STRING   
+    urlimage: DataTypes.STRING,
+    likes: DataTypes.INTEGER   
 
   }, {
     sequelize,
