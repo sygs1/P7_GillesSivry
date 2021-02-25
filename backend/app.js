@@ -1,17 +1,19 @@
 const express = require('express'); // cadrage techno
 //const mongoose = require('mongoose');  // cadrage techno
+const { Sequelize } = require('sequelize'); 
 const app = express();
 
 const userRoutes = require('./routes/user');
 const messagesRoutes = require('./routes/messages');
 const commentairesRoutes = require('./routes/commentaires.js');
 
-const connectBdd = require('./bdd/comseqbdd');
-const mysql = require('mysql');
 
+require('./bdd/comseqbdd');
+const mysql = require('mysql');
+//--
 const bodyParser = require('body-parser');
 const path = require('path'); //gestion dossier
-
+//---
 const helmet = require('helmet') // protect https - prev attaque XSS
 
 const rateLimit = require("express-rate-limit"); // protect bruteForce
@@ -23,19 +25,24 @@ const apiLimiter = rateLimit({
 ////
 require('dotenv').config(); // import environnement
 
-
-//-----------------------------------------------------init com
+console.log('test connexion app.js avec dotenv');
+//-----------------------------------------------------init com mysql
 const db = mysql.createConnection({
-   host: "localhost",
-   user: "root",
-   password: "gs2021"
+   host: process.env.sqlhost, // a mettre dans un process .env = ok
+   user: process.env.sqluser1,
+   password: process.env.sqlpassword,
+   database: process.env.sqldb,
+   port: process.env.sqlport
  }); 
-//----------------------------------------------------- comm
+
+//----------------------------------------------------- comm = voir pb gestion erreur = ok fix
 db.connect(function(err) {
    if (err) throw err;
-   console.log("Connecté à la base de données MySQL!");
+   console.log("Pb Connection à la base de données MySQL!");
  }); 
  //-----------------------------------------------------
+console.log('connection ++ app.js réussie avec dotenv');
+
 
 //mongoose.connect(process.env.Admin3,
 //  { useNewUrlParser: true,
@@ -56,10 +63,11 @@ app.use(helmet()) // XSS
 app.use(bodyParser.json());
 ///----
   // acces server 
+  console.log('---passage setheader app');
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');  // tout le monde
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS'); // voir si tt requis pour sopekocko
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS'); 
     next();
   });
 

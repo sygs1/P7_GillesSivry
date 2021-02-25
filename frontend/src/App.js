@@ -1,5 +1,14 @@
-import logo from './logo.svg';
+// importations
+import React from 'react';
+import axios from "axios"; // pour requetes
+import { useDispatch } from "react-redux";
+
+
+import logo from './images/logo.svg';
 import './App.css';
+
+
+// ---------------
 
 function App() {
   return (
@@ -7,15 +16,15 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Bienvenue sur le réseau social GROUPOMANIA.
         </p>
         <a
           className="App-link"
-          href="https://reactjs.org"
+          href="https://groupomania-rs.org"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Connectez vous
         </a>
       </header>
     </div>

@@ -1,7 +1,9 @@
+const { Sequelize } = require('sequelize'); 
+
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('ommentaires', {
+    await queryInterface.createTable('commentaires', {
       idmessages: {
         allowNull: false,
         autoIncrement: true,

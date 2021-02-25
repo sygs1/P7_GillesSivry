@@ -1,3 +1,6 @@
+// ancienne version bdd= schema 1
+
+
 'use strict';
 const {
   Model

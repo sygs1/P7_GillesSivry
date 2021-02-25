@@ -1,3 +1,5 @@
+//const { Sequelize } = require('sequelize'); 
+
 'use strict';
 const {
   Model
@@ -27,3 +29,4 @@ module.exports = (sequelize, DataTypes) => {
   });
   return User;
 };
+console.log('userModels');
