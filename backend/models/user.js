@@ -1,4 +1,8 @@
-//const { Sequelize } = require('sequelize'); 
+const { Sequelize, DataTypes } = require('sequelize');
+//require('../bdd/comseqbdd');
+
+
+//console.log("pass model user");
 
 'use strict';
 const {
@@ -17,16 +21,17 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   User.init({
-    iduser: DataTypes.INTEGER,
-    username: DataTypes.STRING,
-    pseudo: DataTypes.STRING,
+    iduser: DataTypes.INTEGER,   
     email: DataTypes.STRING,    
-    password: DataTypes.STRING,    
+    password: DataTypes.STRING,   
+    pseudo: DataTypes.STRING,    
     isAdmin: DataTypes.BOOLEAN
   }, {
     sequelize,
-    modelName: 'User',
+    modelName: 'Users'
   });
   return User;
+  
 };
-console.log('userModels');
+
+//console.log('modele user');

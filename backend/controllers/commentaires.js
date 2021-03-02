@@ -1,5 +1,6 @@
 const Commentaire = require("../models/commentaires");
 const fs = require('fs'); // file system de node
+//require('../bdd/comseqbdd');
 
 // crea commentaires
 exports.createCommentaire = (req, res, next) => {
@@ -37,7 +38,7 @@ exports.modifyCommentaire = (req, res, next) => {
 
 // supprime commentaire
 exports.deleteCommentaire = (req, res, next) => {
-    Message.findOne({ _id: req.params.id, userId : req.userId }) // _id de mongoDB + verification du userId
+    Message.findOne({ _id: req.params.id, userId : req.userId }) // _id bdd + verification du userId
       .then(commentaire => {
         //const filename = commentaire.imageUrl.split('/images/')[1];
         //fs.unlink(`images/${filename}`, () => {

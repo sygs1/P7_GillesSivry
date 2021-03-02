@@ -2,11 +2,10 @@ const multer = require('multer'); // gestion dossier
 
 const MIME_TYPES = { // cadrage extensions autorisées
   "image/jpg": "jpg",
-  "image/jpeg": "jpeg",
-  "image/png": "png",
-  "image/webp": "webp",
-  "image/gif": "gif"
+  "image/jpeg": "jpeg"  
 };
+
+//console.log("pass mime img");
 
 const storage = multer.diskStorage({ // accès disk
   destination: (req, file, callback) => {

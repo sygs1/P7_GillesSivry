@@ -1,4 +1,7 @@
-//const { Sequelize } = require('sequelize'); 
+const { Sequelize, DataTypes } = require('sequelize');
+//require('../bdd/comseqbdd'); 
+
+//console.log("pass model comments");
 
 'use strict';
 const {
@@ -24,8 +27,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   commentaires.init({
     idcommentaires: DataTypes.INTEGER,
-    messages_idmessages: DataTypes.INTEGER,
-     
+    messages_idmessages: DataTypes.INTEGER,     
     commentaire: DataTypes.STRING,
     likecommentaire: DataTypes.INTEGER   
      
@@ -35,3 +37,4 @@ module.exports = (sequelize, DataTypes) => {
   });
   return message;
 };
+//console.log('modele commentaires');

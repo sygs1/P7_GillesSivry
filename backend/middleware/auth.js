@@ -2,6 +2,8 @@
 const jwt = require('jsonwebtoken'); // cadrage techno
 //require('dotenv').config();
 
+//console.log("pass auth token");
+
 module.exports = (req, res, next) => {
   try {
     const token = req.headers.authorization.split(' ')[1]; // recup header ()

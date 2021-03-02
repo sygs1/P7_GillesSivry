@@ -1,5 +1,8 @@
-//const { Sequelize } = require('sequelize'); 
+const { Sequelize, DataTypes } = require('sequelize');
+//require('../bdd/comseqbdd'); 
 
+
+//console.log('pass model message');
 
 'use strict';
 const {
@@ -25,12 +28,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   message.init({
-    users_idusers: DataTypes.INTEGER,
-    
+    users_idusers: DataTypes.INTEGER,    
     titremessages: DataTypes.STRING,
     message: DataTypes.STRING,
     urlimage: DataTypes.STRING,
-    likes: DataTypes.INTEGER   
+    likemessage: DataTypes.INTEGER   
 
   }, {
     sequelize,
@@ -38,3 +40,4 @@ module.exports = (sequelize, DataTypes) => {
   });
   return message;
 };
+//console.log('modele messages');

@@ -8,7 +8,7 @@ const auth = require('../middleware/auth'); // authentification
 //
 const multer = require('../middleware/multer-config'); // gestion dossier
 //
-const messagesCtrl = require('../controllers/messages'); // ref controller messages
+//const messagesCtrl = require('../controllers/messages'); // ref controller messages
 
 const commentairesCtrl = require('../controllers/commentaires'); // ref ctrl commentaires
 

@@ -1,3 +1,5 @@
+//cours YT + doc
+
 import React, { useState } from "react";
 import axios from "axios";
 
@@ -12,7 +14,7 @@ const LoginFormulaire = () => {
 
     axios({
       method: "post",
-      url: `${process.env.REACT_APP_API_URL}api/user/login`, // reprendre dotenv
+      url: `${process.env.REACT_APP_API_URL}api/auth/login`, // reprendre dotenv
       withCredentials: true,
       data: {
         email,

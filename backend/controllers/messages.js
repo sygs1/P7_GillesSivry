@@ -1,11 +1,12 @@
 const Message = require("../models/messages");
 const fs = require('fs'); // file system de node
+//require('../bdd/comseqbdd');
 
 // crea message
 exports.createMessage = (req, res, next) => {
     const messageObject = JSON.parse(req.body.message);
     delete messageObject._id; 
-    const message = new Message({ // new dans mongoose crée un champ _id
+    const message = new Message({ // new dans bdd crée un champ _id
       ...messageObject, // opérateur spread = copie tous les éléments
       likes: 0,
       dislikes: 0,

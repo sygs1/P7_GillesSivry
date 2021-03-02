@@ -1,34 +1,27 @@
-// importations
-import React from 'react';
-import axios from "axios"; // pour requetes
-import { useDispatch } from "react-redux";
+import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom';
 
+//
+//import { Button, Container } from '@material-ui/core';
+//
 
-import logo from './images/logo.svg';
-import './App.css';
+import PageHome from './routes/PageHome';
+import PageLogin from './routes/PageLogin';
+import PageProfile from './routes/PageProfile';
+import PageSignUp from './routes/PageSignUp';
 
-
-// ---------------
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Bienvenue sur le réseau social GROUPOMANIA.
-        </p>
-        <a
-          className="App-link"
-          href="https://groupomania-rs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Connectez vous
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <Switch>
+        <Route path="/" exact component={PageHome} />
+        <Route path="/login" component={PageLogin} />
+        <Route path="/sign-up" component={PageSignUp} />
+        <Route path="/profile/:username" component={PageProfile} />
+      </Switch>
+    );
+  }
 }
 
 export default App;
+//export * from "react-router";

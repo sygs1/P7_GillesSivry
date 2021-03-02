@@ -1,27 +1,31 @@
 //----------------------------------------------------init
-const { Sequelize } = require('sequelize'); 
-
+const { Sequelize, Model, DataTypes } = require('sequelize');
+ 
 //-----------------------------------------------------connect
 const sequelize = new Sequelize( 
-    process.env.sqldb, 
-    process.env.sqluser1, 
-    process.env.sqlpassword,
-    { dialect: "mysql",  host: "localhost:8080" }
+    "groupomania2",
+    "root",
+    "gsoc2021",   
+    { dialect: "mysql",  host: "localhost", port: 3306 }
 );
-
 //-----------------------------------------------------verif connect avec auth
 try {   
-    sequelize.authenticate();   
-    console.log('Connecté à la base de données MySQL!'); 
+    sequelize.authenticate(); 
+    //console.log('----------------'); 
+    //console.log('comseqbdd = auth sequelize 3306 ok'); 
+    //console.log('----------------');
 
 } catch (error) {   console.error('Impossible de se connecter, erreur suivante :', error); 
 };
 
-//-----------------------------------------------------crea bdd
+
+
+/*
+//-----------------------------------------------------auth connection // crea bdd
 try {
     sequelize.authenticate();
    
-    console.log('Connecté à la base de données MySQL!');
+    //console.log('auth connection seq MySQL!');
    
     sequelize.query("CREATE DATABASE `groupomania`;").then(([results, metadata]) => {
    
@@ -30,9 +34,10 @@ try {
     })   
 } catch (error) {
    
-    console.error('Impossible de se connecter, erreur suivante :', error);
+   console.error('Impossible de se connecter, erreur suivante :', error);
    
 };
 
-//-----------------------------------------------------
 
+//-----------------------------------------------------
+*/

@@ -12,8 +12,9 @@ const normalizePort = val => {
   }
   return false;
 };
-const port = normalizePort(process.env.PORT || '3000'); // prendre port 3000 si pas de port deja utilise dans l'environnement
+const port = normalizePort(process.env.PORTBACK || '4200'); // prendre port 3000 si pas de port deja utilise dans l'environnement
 app.set('port', port);
+
 
 const errorHandler = error => {
   if (error.syscall !== 'listen') {
@@ -23,11 +24,11 @@ const errorHandler = error => {
   const bind = typeof address === 'string' ? 'pipe ' + address : 'port: ' + port; // cadrage + affichage
   switch (error.code) {
     case 'EACCES':
-      console.error(bind + ' requires elevated privileges.');
+      console.error(bind + ' necessite davantage de droit');
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      console.error(bind + ' is already in use.');
+      console.error(bind + ' deja utilisé');
       process.exit(1);
       break;
     default:
@@ -43,7 +44,12 @@ server.on('listening', () => {
   const bind = typeof address === 'string' ? 'pipe ' + address : 'port ' + port;
   console.log('Listening on ' + bind);
 });
+console.log('--------------');
+server.listen(port);
+console.log('server en attente');
 
-server.listen(8080,function () {
-  console.log("serveur prêt");
+/*server.listen(8080,function () {
+  console.log('serveur prêt');
+  console.log('--------------');
 });
+*/

@@ -3,9 +3,11 @@ const jwt = require('jsonwebtoken'); // pack attribution Token
 const express = require('express');
 const router = express.Router();
 const userCtrl = require('./user');
-const User = require('../models/user'); // récup modele mongoose
+const User = require('../models/user'); // récup modele bdd
+//require('../bdd/comseqbdd');
 
 //-------------------------------- // SIGNUP
+//console.log("pass ctrl signup");
 
 exports.signup = (req, res, next) => {
     bcrypt.hash(req.body.password, 10) // envoi user à la méthode hash de bcrypt
@@ -22,6 +24,7 @@ exports.signup = (req, res, next) => {
 };
 
 //-------------------------------  LOGIN
+//console.log("pass crtl login");
 
 exports.login = (req, res, next) => {
     User.findOne({ email: req.body.email }) // recherche mail dans bdd
@@ -48,3 +51,5 @@ exports.login = (req, res, next) => {
       .catch(error => res.status(500).json({ error }));
   };
 
+
+  //console.log('control user');
