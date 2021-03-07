@@ -1,5 +1,6 @@
 const http = require('http') ;  // http
 const app = require('./app');
+//
 
 const normalizePort = val => {
   const port = parseInt(val, 10);
@@ -48,7 +49,8 @@ console.log('--------------');
 server.listen(port);
 console.log('server en attente');
 
-/*server.listen(8080,function () {
+/*
+server.listen(8080,function () {
   console.log('serveur prêt');
   console.log('--------------');
 });

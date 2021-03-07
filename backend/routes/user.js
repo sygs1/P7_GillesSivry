@@ -10,7 +10,9 @@ const protectLog = require('../middleware/protectLog'); // passe par middleware 
 //---------------------
 // crea user dans bdd
 router.post('/api/auth/signup', (req, res, next) => { // passe par auth
+
     console.log(req.body);
+
     delete req.body._id;
     const users = new Users({   // nouveau user
         ...req.body        

@@ -25,5 +25,8 @@
     "sequelize": "^6.5.0",
     "sequelize-auto": "^0.7.11",
     "sequelize-cli": "^6.2.0"
+  },
+  "devDependencies": {
+    "babel-register": "^6.26.0"
   }
 }

@@ -12,7 +12,7 @@ exports.createCommentaire = (req, res, next) => {
       dislikes: 0,
       usersLiked: [],  // RAZ déjç dans models par défaut mais ... o k u
       usersDisliked: [],      
-      imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+      urlimage: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
       userId: req.userId // init userId pour compare in front
     });
     message.save()
@@ -26,7 +26,7 @@ exports.modifyCommentaire = (req, res, next) => {
   const commentaireObject = req.file ?
     {
       ...JSON.parse(req.body.commentaire),
-      imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+      urlimage: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     } : { ...req.body };  
   Commentaire.updateOne({ _id: req.params.id, userId : req.userId  }, { ...commentaireObject, _id: req.params.id })  // verification du userId
   
@@ -40,7 +40,7 @@ exports.modifyCommentaire = (req, res, next) => {
 exports.deleteCommentaire = (req, res, next) => {
     Message.findOne({ _id: req.params.id, userId : req.userId }) // _id bdd + verification du userId
       .then(commentaire => {
-        //const filename = commentaire.imageUrl.split('/images/')[1];
+        //const filename = commentaire.urlimage.split('/images/')[1];
         //fs.unlink(`images/${filename}`, () => {
             commentaire.deleteOne({ _id: req.params.id })
             .then(() => res.status(200).json({ message: 'commentaire supprimé !'}))

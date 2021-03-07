@@ -1,40 +1,39 @@
-const { Sequelize, DataTypes } = require('sequelize');
-//require('../bdd/comseqbdd'); 
-
-//console.log("pass model comments");
-
 'use strict';
-const {
-  Model
-} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class commentaires extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-      models.commentaires.belongTo(models.User,{
-        foreignKey: {
-          allowNull : true          
-        }
-      })
-
-
-    }
-  };
-  commentaires.init({
-    idcommentaires: DataTypes.INTEGER,
-    messages_idmessages: DataTypes.INTEGER,     
-    commentaire: DataTypes.STRING,
-    likecommentaire: DataTypes.INTEGER   
-     
+  var Comment = sequelize.define('Comment', {
+    userId: DataTypes.INTEGER,
+    message: DataTypes.TEXT,
+    urlimage: DataTypes.STRING,
+    commentairelike: DataTypes.INTEGER
   }, {
-    sequelize,
-    modelName: 'message',
+    classMethods: {
+      associate: function (models) {
+        // associations can be defined here
+
+        models.Comment.belongsTo(models.User, {
+          foreignKey: {
+            allowNull: false
+          }
+        })
+        models.Comment.belongsTo(models.Message, {
+          foreignKey: {
+            allowNull: false
+          }
+        })
+        models.Comment.hasMany(models.Message, {
+          foreignKey: {
+            allowNull: false
+          }
+        })
+        models.Comment.hasMany(models.User, {
+          foreignKey: {
+            allowNull: false
+          }
+        })
+      }
+    }
   });
-  return message;
+  return Comment;
 };
-//console.log('modele commentaires');
+
+

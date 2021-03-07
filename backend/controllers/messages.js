@@ -12,12 +12,12 @@ exports.createMessage = (req, res, next) => {
       dislikes: 0,
       usersLiked: [],  // RAZ déjç dans models par défaut mais ... o k u
       usersDisliked: [],      
-      imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+      urlimage: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
       userId: req.userId // init userId pour compare in front
     });
     message.save()
       .then(() => res.status(201).json({ message: 'Message enregistré !'}))
-      .catch(error => res.status(400).json({ error }));
+      .catch(error => console.log(error) || res.status(400).json({ error }));
   };
 
   
@@ -26,12 +26,12 @@ exports.modifyMessage = (req, res, next) => {
   const messsageObject = req.file ?
     {
       ...JSON.parse(req.body.message),
-      imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+      urlimage: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     } : { ...req.body };  
   Message.updateOne({ _id: req.params.id, userId : req.userId  }, { ...messageObject, _id: req.params.id })  // verification du userId
   
     .then(() => res.status(200).json({ message: 'Message modifié !'}))
-    .catch(error => res.status(400).json({ error }));
+    .catch(error => console.log(error) || res.status(400).json({ error }));
  
 };
 
@@ -40,14 +40,14 @@ exports.modifyMessage = (req, res, next) => {
 exports.deleteMessage = (req, res, next) => {
     Message.findOne({ _id: req.params.id, userId : req.userId }) // _id de mongoDB + verification du userId
       .then(message => {
-        const filename = message.imageUrl.split('/images/')[1];
+        const filename = message.urlimage.split('/images/')[1];
         fs.unlink(`images/${filename}`, () => {
           message.deleteOne({ _id: req.params.id })
             .then(() => res.status(200).json({ message: 'Message supprimé !'}))
             .catch(error => res.status(400).json({ error }));
         });
       })
-      .catch(error => res.status(500).json({ error }));
+      .catch(error => console.log(error) || res.status(500).json({ error }));
   };
 
     
@@ -55,7 +55,7 @@ exports.deleteMessage = (req, res, next) => {
 exports.getOneMessage = (req, res, next) => {
     Message.findOne({ _id: req.params.id })   
         .then(message => res.status(200).json(message))   
-        .catch(error => res.status(404).json({ error }));
+        .catch(error => console.log(error) || res.status(404).json({ error }));
 
 };
 
@@ -63,7 +63,7 @@ exports.getOneMessage = (req, res, next) => {
 exports.getMessages = (req, res, next) => {
     Messages.find()
         .then(message => res.status(200).json(message))
-        .catch(error => res.status(400).json({ error }));
+        .catch(error => console.log(error) || res.status(400).json({ error }));
 };
     
 

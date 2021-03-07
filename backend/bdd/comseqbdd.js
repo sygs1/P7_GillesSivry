@@ -1,22 +1,35 @@
+const User = require('../models/user');
+
 //----------------------------------------------------init
 const { Sequelize, Model, DataTypes } = require('sequelize');
- 
 //-----------------------------------------------------connect
 const sequelize = new Sequelize( 
-    "groupomania2",
+    "groupomania",
     "root",
     "gsoc2021",   
     { dialect: "mysql",  host: "localhost", port: 3306 }
+    
 );
-//-----------------------------------------------------verif connect avec auth
-try {   
-    sequelize.authenticate(); 
-    //console.log('----------------'); 
-    //console.log('comseqbdd = auth sequelize 3306 ok'); 
-    //console.log('----------------');
+//----------------
+try {
+    sequelize.authenticate();
+    console.log('Connection groupomania has been established successfully.'); 
 
-} catch (error) {   console.error('Impossible de se connecter, erreur suivante :', error); 
-};
+   User(sequelize, DataTypes);
+
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);   
+  }
+exports.sequelize=sequelize;
+
+
+
+
+
+
+
+
+
 
 
 

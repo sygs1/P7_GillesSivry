@@ -1,43 +1,17 @@
-const { Sequelize, DataTypes } = require('sequelize');
-//require('../bdd/comseqbdd'); 
-
-
-//console.log('pass model message');
-
 'use strict';
-const {
-  Model
-} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class message extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-      models.message.belongTo(models.User,{
-        foreignKey: {
-          allowNull : TRUE          
-        }
-      })
-
-
-
-    }
-  };
-  message.init({
-    users_idusers: DataTypes.INTEGER,    
-    titremessages: DataTypes.STRING,
-    message: DataTypes.STRING,
+  var Message = sequelize.define('Message', {
+    title: DataTypes.STRING,
+    message: DataTypes.TEXT,
     urlimage: DataTypes.STRING,
-    likemessage: DataTypes.INTEGER   
+    messagelike: DataTypes.INTEGER
+  }, {});
 
-  }, {
-    sequelize,
-    modelName: 'message',
-  });
-  return message;
+
+  Message.associate = function (models) {
+    // associations can be defined here
+    models.Message.hasMany(models.Comment, { onDelete: 'cascade' })
+    models.Message.hasMany(models.Like, { onDelete: 'cascade' })
+  };
+  return Message;
 };
-//console.log('modele messages');

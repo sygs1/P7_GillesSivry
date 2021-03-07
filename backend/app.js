@@ -20,22 +20,15 @@ const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100
 });
-
 ////
 require('dotenv').config(); // import environnement
-
 //-----------------------------------------------------
 require('./bdd/comseqbdd');
 
 //-----------------------------------------------------
-
-app.use("/api/", apiLimiter); // prevention Force Brute le plus tôt possible
-//
+app.use("/api/", apiLimiter); // prevention Force Brute le plus tôt possible//
 app.use(helmet()) // XSS
-
 app.use(bodyParser.json());
-
-///----
 //console.log('---passage setheader app.js'); //cors
 
 app.use((req, res, next) => {
@@ -50,7 +43,5 @@ app.use('/images', express.static(path.join(__dirname, 'images'))); // static de
 app.use('/api/commentaires', commentairesRoutes);
 app.use('/api/messages', messagesRoutes);
 app.use('/api/auth', userRoutes); // bcrypt pour hash + controleLog (/middleware)
-
-
 
 module.exports = app;

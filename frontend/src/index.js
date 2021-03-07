@@ -1,22 +1,60 @@
+//Imports
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
-
 import './index.css';
 import App from './App';
-import ThemeProvider from './components/Theme';
-import * as serviceWorker from './serviceWorker';
+import store from '../src/store/index'
+import { Provider } from 'react-redux'
+import axios from "axios";
+import Cookies from "js-cookie";
+import jwt from 'jsonwebtoken'
 
-ReactDOM.render(
-  <BrowserRouter>
-    <ThemeProvider>
+
+const JWT_SIGN_SECRET = 'qsf5578QSdfsqfQSSQFsqdfghkjqs7680sqf';
+let token = Cookies.get("token");
+
+if (token) {
+  jwt.verify(token, JWT_SIGN_SECRET, (err, decoded) => {
+    if (err) {
+      Cookies.remove("token");
+      token = null;
+    } else {
+      if (decoded.iss !== "http://localhost:3000/api/users/login") {
+        Cookies.remove("token");
+        token = null;
+      }
+    }
+  });
+}
+
+const render = () => {
+  ReactDOM.render(
+    <Provider store={store}>
       <App />
-    </ThemeProvider>
-  </BrowserRouter>,
-  document.getElementById('root')
-);
+    </Provider>,
+    document.getElementById('root')
+  );
+}
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+if (token) {
+  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  axios.post("http://localhost:3000/api/auth").then(res => {
+    console.log(res.data.email)
+    if (res.data.email == 'moderateur@groupomania.com') {
+      store.dispatch({ type: "SET_LOGIN_ADMIN", payload: res.data });
+      render();
+    } else {
+      store.dispatch({ type: "SET_LOGIN", payload: res.data });
+      render();
+    }
+  });
+} else {
+  render();
+}
+
+
+
+
+
+
