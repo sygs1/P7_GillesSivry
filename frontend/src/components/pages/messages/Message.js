@@ -96,7 +96,7 @@ function Message({ match }) {
                                     <div className="pseudo">
                                     </div>
                                     <div className="Comments">
-                                        <img src={`/images/${messages.urlimage}`} onError={i => i.target.style.display = 'none'} className="image"></img>
+                                        <img alt="messagepic" src={`/images/${messages.urlimage}`} onError={i => i.target.style.display = 'none'} className="image"></img>
                                         <h3 className="">{messages.content}</h3>
                                     </div>
                                     <div className="Createdat">

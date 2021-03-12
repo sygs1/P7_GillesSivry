@@ -9,7 +9,7 @@ function Footer() {
                 <div>
                     <Link to={'/adminlogin'} >
                         <Button className="navbar__style">
-                            <h2 className="hover navbar__style">Connexion Modérateur</h2>
+                            <h3 className="hover navbar__style">Accès Modérateur</h3>
                         </Button>
                     </Link>
                 </div>

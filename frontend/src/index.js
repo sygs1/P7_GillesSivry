@@ -11,7 +11,7 @@ import Cookies from "js-cookie";
 import jwt from 'jsonwebtoken'
 
 
-const JWT_SIGN_SECRET = 'qsf5578QSdfsqfQSSQFsqdfghkjqs7680sqf';
+const JWT_SIGN_SECRET = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 let token = Cookies.get("token");
 
 if (token) {
@@ -20,7 +20,7 @@ if (token) {
       Cookies.remove("token");
       token = null;
     } else {
-      if (decoded.iss !== "http://localhost:3000/api/users/login") {
+      if (decoded.iss !== "http://localhost:3000/api/auth/login") {
         Cookies.remove("token");
         token = null;
       }
@@ -41,7 +41,7 @@ if (token) {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   axios.post("http://localhost:3000/api/auth").then(res => {
     console.log(res.data.email)
-    if (res.data.email == 'moderateur@groupomania.com') {
+    if (res.data.email === 'moderateur@groupomania.com') {
       store.dispatch({ type: "SET_LOGIN_ADMIN", payload: res.data });
       render();
     } else {

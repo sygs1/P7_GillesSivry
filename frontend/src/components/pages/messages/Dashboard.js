@@ -29,7 +29,7 @@ function Dashboard(params) {
     })
     //Declarations
     const [messages, setMessages] = useState([]);
-    //const [iamges, setImages] = useState([]);
+    const [images, setImages] = useState([]);
     const [ error, setError] = useState(null);
 
     //Gets all the messages
@@ -46,11 +46,13 @@ function Dashboard(params) {
 
         axios.get("http://localhost:3000/api/messages", messageData)
             .then(function (response) {
+                
                 const messages = response.data
                 setMessages(messages)
             })
             .catch(function (error) {
                 setError(error);
+                console.log(error);
             });
     }
 
@@ -72,7 +74,7 @@ function Dashboard(params) {
                                                 <h2 className="content">{message.title}</h2>
                                             </div>
                                             <div className="Comments">
-                                                <img alt="comment" src={`/images/${message.urlimage}`} onError={i => i.target.style.display = 'none' } className="image"></img>
+                                                <img alt="commentaire" src={`/images/${message.urlimage}`} onError={i => i.target.style.display = 'none' } className="image"> "</img>
                                                 <h3 className="">{message.content}</h3>
                                             </div>
                                             <div className="Other">

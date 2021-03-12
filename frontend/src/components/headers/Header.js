@@ -63,13 +63,7 @@ function Header(props) {
                                             </Button>
                                         </Link>
                                     </li>
-                                    <li className="nav__list-li">
-                                        <Link to={'/userprofile'} className="navbar__style">
-                                            <Button className="navbar__style">
-                                                <h2 className="hover navbar__style">Profil</h2>
-                                            </Button>
-                                        </Link>
-                                    </li>
+                              
                                     <li className="nav__list-li">
                                         <Link to={'/login'} className="navbar__style" onClick={handleLogout}>
                                             <Button className="navbar__style">

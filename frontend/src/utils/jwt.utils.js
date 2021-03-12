@@ -2,7 +2,7 @@
 // Imports
 var jwt = require('jsonwebtoken');
 
-const JWT_SIGN_SECRET = '<JWT_SIGN_TOKEN>'; //***dotenv?? */
+const JWT_SIGN_SECRET = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/'; //***dotenv?? */
 
 // Exported functions
 module.exports = {
@@ -13,7 +13,7 @@ module.exports = {
         },
             JWT_SIGN_SECRET,
             {
-                expiresIn: '5h'
+                expiresIn: '4h'
             })
     },
     parseAuthorization: function (authorization) {

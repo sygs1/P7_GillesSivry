@@ -4,6 +4,8 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING,    
     password: DataTypes.STRING,
     pseudo: DataTypes.STRING,
+    //createdAt: DataTypes.STRING,
+    //updatedAt : DataTypes.STRING
     
   }, {});
 

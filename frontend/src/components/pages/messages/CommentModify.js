@@ -21,7 +21,7 @@ function CommentModify({ match }) {
 
     // Declarations
     const [error, setError] = useState(null);
-    const messageId = Cookies.get('messageId')
+    const idmessage = Cookies.get('idmessage')
     let history = useHistory();
 
     //HandleChange on form
@@ -40,9 +40,9 @@ function CommentModify({ match }) {
             "id": state.id,
             "content": state.content,
         };
-        axios.put(`http://localhost:3000/api/comment/${match.params.id}`, messageByIdata)
+        axios.put(`http://localhost:3000/api/commentaires/${match.params.id}`, messageByIdata)
             .then(response => {
-                history.push(`/messages/${messageId}`)
+                history.push(`/messages/${idmessage}`)
             })
             .catch(function (error) {
                 setError(error);
@@ -65,7 +65,7 @@ function CommentModify({ match }) {
                                     </Components.Button>
                                     <div className='form-flex'>
                                         <form onSubmit={handleSubmit} className="form__input">
-                                            <div>Commentaire</div>
+                                            <div>Comment</div>
                                             <Components.TextareaAutosize
                                                 className="form__input-title"
                                                 rowsMin={10}
@@ -86,7 +86,7 @@ function CommentModify({ match }) {
                                                     >VALIDER</Components.Button>
                                                 </div>
                                                 <div >
-                                                    <Link to={`/messages/${messageId}`}>
+                                                    <Link to={`/messages/${idmessage}`}>
                                                         <Components.Button
                                                             type="submit"
                                                             variant="contained"

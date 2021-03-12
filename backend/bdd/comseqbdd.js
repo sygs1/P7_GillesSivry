@@ -1,5 +1,6 @@
 const User = require('../models/user');
 
+
 //----------------------------------------------------init
 const { Sequelize, Model, DataTypes } = require('sequelize');
 //-----------------------------------------------------connect
@@ -13,12 +14,12 @@ const sequelize = new Sequelize(
 //----------------
 try {
     sequelize.authenticate();
-    console.log('Connection groupomania has been established successfully.'); 
+    console.log('Connection groupomania = success'); 
 
    User(sequelize, DataTypes);
 
   } catch (error) {
-    console.error('Unable to connect to the database:', error);   
+    console.error('Unable to connect database:', error);   
   }
 exports.sequelize=sequelize;
 

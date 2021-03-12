@@ -77,7 +77,7 @@ img {
 }
 
 .hover:hover {
-  color: aqua;
+  color: red;
   opacity: 0.7;
 }
 
@@ -92,6 +92,7 @@ footer {
   left: 0;
   bottom: 0;
   width: 100%;
+  
   margin: auto;
   font-size: 0.80rem;
 }
@@ -383,7 +384,7 @@ Media querries
     text-decoration: none;
   }
   .hover:hover {
-    color: aqua;
+    color: red;
     opacity: 0.7;
   }
   footer {

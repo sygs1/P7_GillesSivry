@@ -4,7 +4,8 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     message: DataTypes.TEXT,
     urlimage: DataTypes.STRING,
-    messagelike: DataTypes.INTEGER
+   // messagelike: DataTypes.INTEGER,
+   // createdAt: DataTypes.STRING
   }, {});
 
 

@@ -15,7 +15,7 @@ function CommentForm({ props }) {
     const [state, setState] = useState({
         commentaire: "",
         id: "",
-        messageId: "",
+        idmessage: "",
         
     })
 
@@ -37,7 +37,7 @@ function CommentForm({ props }) {
         e.preventDefault();
         const payload = {
             "commentaire": state.content,
-            "messages_idmessage": props
+            "idmessage": props
         }
         //Gets token for user
         axios.post("http://localhost:3000/api/commentaires", payload)

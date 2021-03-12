@@ -17,7 +17,7 @@ function MessageNew() {
     //Set state
     const [state, setState] = useState({
         title: "",
-        content: "",
+        message: "",
         file: "",
         newMessageError: null,
         selectedFile: null
@@ -45,7 +45,7 @@ function MessageNew() {
             "title": state.title,
             "message": state.message,
         }
-        axios.post("http://localhost:3000/api/messages/new", payload)
+        axios.post("http://localhost:3000/api/messages", payload)
             .then(response => {
                 console.log(response)
                 if (response.status === 201) {
@@ -80,7 +80,7 @@ function MessageNew() {
         const formData = new FormData();
         formData.append("file", state.selectedFile);
 
-        axios.post("http://localhost:3000/api/messages/newimage/", formData)
+        axios.post("http://localhost:3000/api/messages", formData)
             .then(response => {
                 console.log(response)
                 if (response.status === 201) {

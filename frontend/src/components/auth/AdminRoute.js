@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 
 //Route for user logged in
 const AdminRoute = ({ component: Component, ...rest }) => {
-    console.log(rest)
+    console.log("adminroute" + rest)
   return (
     <Route
       {...rest}

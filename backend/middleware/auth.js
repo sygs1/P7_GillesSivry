@@ -13,9 +13,11 @@ module.exports = (req, res, next) => {
       throw 'Invalid user ID';
     } else {
       req.userId = userId
+      //console.log("auth req.userId =" + req.userId);
       next();
     }
   } catch {
+    //console.log(error);
     res.status(401).json({
       error: new Error('Requete non identifiée !')
     });

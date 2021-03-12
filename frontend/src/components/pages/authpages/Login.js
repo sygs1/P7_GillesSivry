@@ -19,11 +19,14 @@ function Login(props) {
 
     //Set state
     const [state, setState] = useState({
+       // pseudo: "",
         email: "",
         password: "",
         token: "",
         successMessage: null,
-        errorMessage: ""
+        errorMessage: "",
+       // createdAt: "",
+       // updatedAt: ""
     })
 
     let history = useHistory();
@@ -42,19 +45,24 @@ function Login(props) {
         const payload = {
             "email": state.email,
             "password": state.password,
+            //"pseudo": state.pseudo,
+            //"createdAt": state.createdAt,
+            //"updatedAt": state.updatedAt
         }
 
         axios.post("http://localhost:3000/api/auth/login", payload)
             .then(function (response) {
                 var adminData = response.config.data
                 const admin = JSON.parse(adminData)
-                if (admin.email == 'moderateur@groupomania.com' && admin.password == 'Gg123456789@') {
+                if (admin.email === 'moderateur@groupomania.com' && admin.password === 'Gg123456789@') {
                     setState(prevState => ({
                         ...prevState,
                     }))
                     props.setLogin(response.data);
+                    console.log('propsSetLogin = ' + response);
                     Cookies.set('token', response.data.token);
                     Cookies.set('userId', response.data.userId);
+                   // Cookies.set('pseudo', response.data.pseudo);
                     history.push('/admin')
                 }
                 if (response.status === 201) {
@@ -70,20 +78,23 @@ function Login(props) {
 
                 }
                 else if (response.data.code === 204) {
-                    console.log(response)
+                    console.log(response);
                 }
                 else {
-                    console.log(response)
+                    console.log(response);
                 }
             })
             .catch(err => {
+               
                 setState({ errorMessage: err.message });
             });
     }
 
     const { register, handleSubmit, errors } = useForm();
     const onSubmit = data => {
+
         console.log(data)
+
         onClickSubmit()
 
     };
@@ -101,11 +112,12 @@ function Login(props) {
                             </Components.Button>
                             <div >
                                 <form className="login__input" onSubmit={handleSubmit(onSubmit)}>
+                                    
                                     <div>
                                         <Components.TextField
-                                            inputRef={register({
-                                                pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-                                            })}
+                                            //inputRef={register({
+                                            //    pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+                                            //})}
                                             type="email"
                                             name="email"
                                             id="email"
@@ -117,9 +129,9 @@ function Login(props) {
                                     </div>
                                     <div>
                                         <Components.TextField
-                                            inputRef={register({
-                                                pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
-                                            })}
+                                            //inputRef={register({
+                                            //    pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+                                            //})}
                                             type="password"
                                             name="password"
                                             id="password"
@@ -135,7 +147,7 @@ function Login(props) {
                                             variant="outlined"
                                             color="primary"
                                             type="submit"
-                                            //onClick={onClickSubmit}
+                                            onClick={onClickSubmit}
                                             id="submit"
                                         >VALIDER
                                           </Components.Button>

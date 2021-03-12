@@ -46,7 +46,7 @@ function Login(props) {
             .then(function (response) {
                 var adminData = response.config.data
                 const admin = JSON.parse(adminData)
-                if (admin.email == 'moderateur@groupomania.com' && admin.password == 'Gg123456789@') {
+                if (admin.email === 'moderateur@groupomania.com' && admin.password === 'Gg123456789@') {
                     setState(prevState => ({
                         ...prevState,
                     }))
@@ -75,7 +75,7 @@ function Login(props) {
                         <section className="message-list" >
                             <img src={logo} alt="logo" className="login-logo"></img>
                             <Components.Button color="primary">
-                                <p>Connexion Modérateur</p>
+                                <p>Accès Modérateur</p>
                             </Components.Button>
                             <div >
                                 <form className="login__input">

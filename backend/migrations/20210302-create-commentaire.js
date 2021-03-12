@@ -19,7 +19,7 @@ module.exports = {
           key: 'id'
         }
       },
-      messageId: {
+      idmessage: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {

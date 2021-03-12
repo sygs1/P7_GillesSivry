@@ -36,7 +36,7 @@ function ImageTest() {
             'urlimage' : state.urlimage
         }
         //[0].Users[0].pseudo
-        axios.get("http://localhost:3000/api/imagetest", messageData)
+        axios.get("http://localhost:3000/api/images", messageData)
             .then(function (response) {
                 const messages = response.data
                 setMessages(messages) 
@@ -53,7 +53,7 @@ function ImageTest() {
             <div >
                 <div>
 
-                    <h2 >Connexion Modérateur</h2>
+                    <h3 >Accès Modérateur</h3>
 <div>{messages.urlimage}</div>
                 </div>
             </div>

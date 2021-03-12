@@ -37,6 +37,10 @@ exports.signup = (req, res, next) => {
 //console.log("pass crtl login");
 
 exports.login = (req, res, next) => {
+  
+  console.log('req.body ===========');
+  console.log(req.body); 
+
     User.findOne({ email: req.body.email }) // recherche mail dans bdd
       .then(user => {
         if (!user) { // on l'a trouvé

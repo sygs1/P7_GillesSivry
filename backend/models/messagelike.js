@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Like = sequelize.define('Like', {
-    messageId: {
+    idmessage: {
       type: DataTypes.INTEGER,
       references: {
         model: 'Message',
@@ -24,12 +24,12 @@ module.exports = (sequelize, DataTypes) => {
     models.User.belongsToMany(models.Message, {
       through: models.Like,
       foreignKey: 'userId',
-      otherKey: 'messageId',
+      otherKey: 'idmessage',
     });
 
     models.Message.belongsToMany(models.User, {
       through: models.Like,
-      foreignKey: 'messageId',
+      foreignKey: 'idmessage',
       otherKey: 'userId',
     });
 
@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     models.Like.belongsTo(models.Message, {
-      foreignKey: 'messageId',
+      foreignKey: 'idmessage',
       as: 'message',
     });
 

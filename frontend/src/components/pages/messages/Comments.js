@@ -27,7 +27,7 @@ function Comments() {
     const [comments, setComments] = useState([]);
     const [error, setError] = useState(null);
     const token = Cookies.get('token')
-    const cookie = Cookies.get('messageId')
+    const cookie = Cookies.get('idmessage')
     const userIdToken = JSON.parse(atob(token.split('.')[1]));
 
 
@@ -35,20 +35,20 @@ function Comments() {
     const fetchComments = (e) => {
         const commentData = {
             "id": state.id,
-            "message_idMessage": state.message_idmessage,
+            "idmessage": state.idmessage,
             "commentaire": state.commentaire,
             "commentairelike": state.commentairelike,
             'UserId': state.UserId,
             'createdAt': state.createdAt
         }
 
-        axios.get(`http://localhost:3000/api/comment/`, commentData)
+        axios.get(`http://localhost:3000/api/commentaires`, commentData)
             .then(function (response) {
                 //Checks if message
                 let i = -1
                 while (i < response.data.length) {
                     i++
-                    if (response.data[i].MessageId == cookie) { //For pseudo
+                    if (response.data[i].idmessage === cookie) { //For pseudo
                         var commentsAll = comments.push(response.data[i])
                         setComments(comments)
                     } else {
@@ -64,7 +64,7 @@ function Comments() {
     //Deletes comment
     const deleteComment = (e) => {
         //axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
-        axios.delete(`http://localhost:3000/api/comment/${e}`)
+        axios.delete(`http://localhost:3000/api/commentaires/${e}`)
             .then(function (response) {
                 window.location.reload()
 

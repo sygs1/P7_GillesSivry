@@ -8,6 +8,7 @@ import moment from 'moment';
 import * as Components from '../../../materialui/Imports'
 import store from '../../../store/index'
 
+
 //Fetches and displays all messages on the dashboard for the ADMIN
 function AdminDashboard(params) {
     useEffect(() => {
@@ -87,8 +88,8 @@ function AdminDashboard(params) {
                                             </div>
                                             <div className="admin-items">
                                                 <h3 className="">Commentaire :</h3>
-                                                <img src={`/images/${message.urlimage}`} onError={i => i.target.style.display = 'none'} className="image"></img>
-                                                <div>{message.content}</div>
+                                                <img alt="picimage" src={`/images/${message.urlimage}`} onError={i => i.target.style.display = 'none'} className="image"></img>
+                                                <div>{message.message}</div>
                                             </div>
                                             <div className="admin-items">
                                                 <div className="">Crée le : </div>

@@ -39,7 +39,7 @@ function App() {
             <AuthRoute exact path='/messages/:id' component={Message} />
             <AuthRoute exact path='/images' component={ImageTest} />
             <AuthRoute exact path='/modify/:id' component={MessageModify} />
-            <AuthRoute exact path='/modifycommentaire/:id' component={CommentModify} />
+            <AuthRoute exact path='/modifycomment/:id' component={CommentModify} />
           </Switch>
         </Router>
       </React.StrictMode>,

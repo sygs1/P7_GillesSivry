@@ -44,7 +44,7 @@ exports.deleteMessage = (req, res, next) => {
         fs.unlink(`images/${filename}`, () => {
           message.deleteOne({ _id: req.params.id })
             .then(() => res.status(200).json({ message: 'Message supprimé !'}))
-            .catch(error => res.status(400).json({ error }));
+            .catch(error =>  console.log(error) || res.status(400).json({ error }));
         });
       })
       .catch(error => console.log(error) || res.status(500).json({ error }));
@@ -99,7 +99,7 @@ exports.likerMessage = (req, res, next) => {
               
             })
               .then(() => { res.status(201).json({ message: "bon ... ok."}); }) 
-              .catch((error) => { res.status(400).json({error}); });              
+              .catch((error) =>  { res.status(400).json({error}); });              
           } 
         //--------------  
 
